@@ -10,53 +10,157 @@
     <div class="container">
         <a href="../index.html" class="back">← Back</a>
         
-        <h1>Modeling of Sea Surface Temperature in Boston Harbor using Multi-fidelity Gaussian Process Regression</h1>
-        
-        <p class="meta">American Geophysical Union (AGU) Annual Conference 2025 — Poster Presentation</p>
-        
-        <h2>Abstract</h2>
-        <p>We developed a multi-fidelity Gaussian Process Regression (GPR) model to predict Sea Surface Temperature (SST) in Boston Harbor by combining low-fidelity satellite data with high-fidelity buoy sensor measurements. Our approach addresses the challenge of limited high-fidelity data points (12 sensors) by leveraging abundant low-fidelity satellite observations (653 points) to improve spatial coverage while maintaining local accuracy.</p>
-        
-        <h2>Motivation</h2>
-        <p>The Boston Harbor is undergoing ecological and industrial change driven by urban development and climate change. Sea Surface Temperature strongly affects marine ecosystems, water quality, and harbor industries. Accurate SST prediction helps understand these impacts and supports decision-making for harbor management.</p>
-        
-        <h2>Methods</h2>
-        <ul>
-            <li><strong>Low Fidelity Data:</strong> Satellite SST measurements (653 points) — wide coverage, lower accuracy</li>
-            <li><strong>High Fidelity Data:</strong> Buoy sensor measurements (12 points) — sparse coverage, high accuracy</li>
-            <li><strong>Approach:</strong> Linear calibration of LF data using HF points, then multi-fidelity GPR training</li>
-            <li><strong>Validation:</strong> Leave-one-out cross-validation with 2 held-out HF points</li>
-        </ul>
-        
-        <h2>Key Results</h2>
-        <ul>
-            <li>Multi-fidelity GPR outperformed single-fidelity models</li>
-            <li>Reduced SST prediction error with more reliable uncertainty estimates</li>
-            <li>Successfully combined satellite coverage with sensor accuracy</li>
-            <li>Linear GPR preferred over nonlinear due to limited HF data points</li>
-        </ul>
-        
-        <h2>Challenges</h2>
-        <p><strong>Thermoclines:</strong> Subsurface temperature gradients exist but our surface-only data cannot account for them. Future work requires depth data to incorporate thermocline effects.</p>
-        
-        <h2>Future Work</h2>
-        <ul>
-            <li>Incorporate thermocline data by obtaining depth measurements</li>
-            <li>Expand high-fidelity sensor coverage across the harbor</li>
-            <li>Develop into a peer-reviewed publication</li>
-        </ul>
-        
-        <h2>Authors</h2>
-        <p><strong>Angad Kumar</strong> — Obra D. Tompkins High School, Texas, USA<br>
-        <strong>Khemraj Shukla</strong> — Brown University, Rhode Island, USA</p>
-        
-        <h2>Acknowledgements</h2>
-        <p>We thank Xuhui Meng (Huazhong University of Science and Technology) for providing the dataset.</p>
-        
-        <h2>Links</h2>
-        <p>
-            <a href="../Kumar_Shukla_AGU_2025_poster_60x40.pdf" target="_blank">Download Poster (PDF)</a>
-        </p>
+        <header class="page-header">
+            <span class="badge">AGU 2025</span>
+            <h1>Modeling Sea Surface Temperature in Boston Harbor</h1>
+            <p class="subtitle">Multi-fidelity Gaussian Process Regression combining satellite and sensor data</p>
+            <p class="authors">
+                <strong>Angad Kumar</strong> · Tompkins High School
+                <br>
+                <strong>Khemraj Shukla</strong> · Brown University
+            </p>
+        </header>
+
+        <div class="poster-download">
+            <a href="../assets/agu-poster.pdf" class="btn-primary" target="_blank">Download Poster PDF</a>
+        </div>
+
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p class="lead">
+                We developed a multi-fidelity Gaussian Process Regression model to predict Sea Surface Temperature (SST) 
+                in Boston Harbor by combining abundant low-fidelity satellite data with sparse high-fidelity buoy sensors.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Motivation</h2>
+            <div class="two-col">
+                <div>
+                    <p>Boston Harbor is undergoing rapid ecological and industrial change driven by urban development 
+                    and climate change. Accurate SST prediction is crucial for:</p>
+                    <ul>
+                        <li>Marine ecosystem management</li>
+                        <li>Water quality monitoring</li>
+                        <li>Harbor industry operations</li>
+                    </ul>
+                </div>
+                <div class="figure">
+                    <img src="../assets/agu-images/boston-harbor-map.png" alt="Boston Harbor study area map">
+                    <span class="caption">Boston Harbor study region</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Data Sources</h2>
+            <div class="data-cards">
+                <div class="data-card lf">
+                    <h3>Low Fidelity</h3>
+                    <div class="stat">653</div>
+                    <p>Satellite measurements</p>
+                    <ul>
+                        <li>Wide spatial coverage</li>
+                        <li>Lower accuracy</li>
+                        <li>Low cost</li>
+                    </ul>
+                </div>
+                <div class="data-card hf">
+                    <h3>High Fidelity</h3>
+                    <div class="stat">12</div>
+                    <p>Buoy sensors</p>
+                    <ul>
+                        <li>Sparse coverage</li>
+                        <li>High accuracy</li>
+                        <li>High cost</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="figure wide">
+                <img src="../assets/agu-images/data-comparison-table.png" alt="Data source comparison table">
+                <span class="caption">Comparison of low-fidelity satellite and high-fidelity buoy sensor data</span>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Method</h2>
+            <div class="method-flow">
+                <div class="step">
+                    <span class="step-num">1</span>
+                    <p>Calibrate LF satellite data using HF buoy points</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <p>Train multi-fidelity GPR on combined dataset</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <p>Validate using leave-one-out cross-validation</p>
+                </div>
+            </div>
+            <div class="figure wide">
+                <img src="../assets/agu-images/methods-diagram.png" alt="Multi-fidelity GPR workflow diagram">
+                <span class="caption">Multi-fidelity GPR workflow: LF data provides patterns, HF data calibrates scale</span>
+            </div>
+            <div class="figure wide">
+                <img src="../assets/agu-images/analogy-illustration.png" alt="Analogy for multi-fidelity approach">
+                <span class="caption">Analogy: LF data shows right patterns but wrong scale; HF points calibrate to correct scale</span>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Results</h2>
+            <div class="results-grid">
+                <div class="result-item">
+                    <h4>Multi-fidelity vs Single-fidelity</h4>
+                    <p>Multi-fidelity GPR significantly outperformed single-fidelity models, reducing prediction error 
+                    while providing reliable uncertainty estimates.</p>
+                </div>
+                <div class="result-item">
+                    <h4>Spatial Coverage</h4>
+                    <p>Successfully combined satellite coverage (653 points) with sensor accuracy (12 points) to 
+                    predict temperatures across entire harbor.</p>
+                </div>
+                <div class="result-item">
+                    <h4>Linear vs Nonlinear</h4>
+                    <p>Linear GPR preferred over nonlinear due to limited HF data points—nonlinear models require 
+                    more training data to avoid overfitting.</p>
+                </div>
+            </div>
+            <div class="figure wide">
+                <img src="../assets/agu-images/prediction-comparison.png" alt="Prediction results comparing MF, HF only, and LF only">
+                <span class="caption">Prediction error comparison: Multi-fidelity (MF) vs High-fidelity only (HF) vs Low-fidelity only (LF)</span>
+            </div>
+            <div class="figure wide">
+                <img src="../assets/agu-images/uncertainty-plot.png" alt="Uncertainty quantification plot">
+                <span class="caption">Mean prediction with standard deviation bounds showing uncertainty quantification</span>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Challenges & Future Work</h2>
+            <div class="figure">
+                <img src="../assets/agu-images/thermocline-diagram.png" alt="Thermocline effect diagram">
+                <span class="caption">Thermoclines create subsurface temperature gradients not captured by surface measurements</span>
+            </div>
+            <div class="challenge-box">
+                <strong>Thermocline Problem:</strong> Subsurface temperature gradients exist but our surface-only 
+                data cannot account for them. Future work requires depth measurements.
+            </div>
+            <ul class="future-list">
+                <li>Incorporate thermocline data with depth measurements</li>
+                <li>Expand high-fidelity sensor coverage</li>
+                <li>Develop into peer-reviewed publication</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Acknowledgements</h2>
+            <p>We thank <strong>Xuhui Meng</strong> (Huazhong University of Science and Technology) for providing 
+            the dataset and guidance on multi-fidelity methods.</p>
+        </section>
     </div>
 </body>
 </html>
