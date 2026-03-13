@@ -78,15 +78,21 @@ body {
     color: #999;
 }
 
-/* Projects Section */
-.projects h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #e5e5e5;
+/* Sections */
+.section {
+    margin-bottom: 3rem;
 }
 
+.section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e5e5;
+    color: #111;
+}
+
+/* Projects Grid */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -121,6 +127,70 @@ body {
     line-height: 1.5;
 }
 
+/* Items (Experience, Publications) */
+.item {
+    margin-bottom: 1.25rem;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 400;
+}
+
+.item p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.meta {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Awards */
+.awards {
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.awards li {
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Skills */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill {
+    background: #f0f0f0;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
 /* Responsive */
 @media (max-width: 700px) {
     body {
@@ -140,5 +210,9 @@ body {
     
     .links {
         justify-content: center;
+    }
+    
+    .item-header {
+        flex-direction: column;
     }
 }
