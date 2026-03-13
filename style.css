@@ -92,7 +92,7 @@ body {
     color: #111;
 }
 
-/* Cards (Projects, Publications, Experience) */
+/* Cards */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -128,20 +128,19 @@ body {
     line-height: 1.5;
 }
 
-/* Awards */
-.awards {
-    list-style: none;
-    display: grid;
-    gap: 0.75rem;
+/* Award Cards - Compact Style */
+.card.award {
+    padding: 1rem 1.25rem;
 }
 
-.awards li {
+.card.award h3 {
     font-size: 0.95rem;
-    color: #444;
-    padding: 0.75rem;
-    background: white;
-    border-radius: 6px;
-    border: 1px solid #e5e5e5;
+    margin-bottom: 0.25rem;
+}
+
+.card.award p {
+    font-size: 0.85rem;
+    color: #888;
 }
 
 /* Responsive */
