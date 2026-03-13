@@ -185,6 +185,30 @@ ul li {
 .figure.wide {
     margin-top: 1.5rem;
 }
+
+/* External link indicator using ↗ symbol */
+.links a[target="_blank"]::after,
+.card[target="_blank"]::after {
+    content: " ↗";
+    font-size: 0.85em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+/* Optional: Different style for different link types */
+.links a[href*="github.com"]::after {
+    content: " ↗"; /* Could use GitHub icon font or SVG */
+}
+
+.links a[href*="linkedin.com"]::after {
+    content: " ↗";
+}
+
+/* Hover effect */
+.links a[target="_blank"]:hover::after,
+.card[target="_blank"]:hover::after {
+    opacity: 1;
+}
 /* Responsive */
 @media (max-width: 700px) {
     body {
