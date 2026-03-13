@@ -92,14 +92,14 @@ body {
     color: #111;
 }
 
-/* Projects Grid */
+/* Cards (Projects, Publications, Experience) */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1rem;
 }
 
-.project {
+.card {
     background: white;
     padding: 1.25rem;
     border-radius: 8px;
@@ -107,61 +107,25 @@ body {
     color: inherit;
     border: 1px solid #e5e5e5;
     transition: border-color 0.2s, box-shadow 0.2s;
+    display: block;
 }
 
-.project:hover {
+.card:hover {
     border-color: #2563eb;
     box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
 }
 
-.project h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    color: #111;
-}
-
-.project p {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.5;
-}
-
-/* Items (Experience, Publications) */
-.item {
-    margin-bottom: 1.25rem;
-}
-
-.item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.25rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.item h3 {
+.card h3 {
     font-size: 1rem;
     font-weight: 600;
+    margin-bottom: 0.5rem;
     color: #111;
 }
 
-.date {
+.card p {
     font-size: 0.9rem;
     color: #666;
-    font-weight: 400;
-}
-
-.item p {
-    font-size: 0.95rem;
-    color: #555;
     line-height: 1.5;
-}
-
-.meta {
-    font-size: 0.9rem;
-    color: #666;
 }
 
 /* Awards */
@@ -174,21 +138,10 @@ body {
 .awards li {
     font-size: 0.95rem;
     color: #444;
-}
-
-/* Skills */
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.skill {
-    background: #f0f0f0;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    color: #555;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e5e5e5;
 }
 
 /* Responsive */
@@ -210,9 +163,5 @@ body {
     
     .links {
         justify-content: center;
-    }
-    
-    .item-header {
-        flex-direction: column;
     }
 }
