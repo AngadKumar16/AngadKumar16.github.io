@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGU 2025 - Angad Kumar</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back">← Back</a>
+        
+        <h1>Modeling of Sea Surface Temperature in Boston Harbor using Multi-fidelity Gaussian Process Regression</h1>
+        
+        <p class="meta">American Geophysical Union (AGU) Annual Conference 2025 — Poster Presentation</p>
+        
+        <h2>Abstract</h2>
+        <p>We developed a multi-fidelity Gaussian Process Regression (GPR) model to predict Sea Surface Temperature (SST) in Boston Harbor by combining low-fidelity satellite data with high-fidelity buoy sensor measurements. Our approach addresses the challenge of limited high-fidelity data points (12 sensors) by leveraging abundant low-fidelity satellite observations (653 points) to improve spatial coverage while maintaining local accuracy.</p>
+        
+        <h2>Motivation</h2>
+        <p>The Boston Harbor is undergoing ecological and industrial change driven by urban development and climate change. Sea Surface Temperature strongly affects marine ecosystems, water quality, and harbor industries. Accurate SST prediction helps understand these impacts and supports decision-making for harbor management.</p>
+        
+        <h2>Methods</h2>
+        <ul>
+            <li><strong>Low Fidelity Data:</strong> Satellite SST measurements (653 points) — wide coverage, lower accuracy</li>
+            <li><strong>High Fidelity Data:</strong> Buoy sensor measurements (12 points) — sparse coverage, high accuracy</li>
+            <li><strong>Approach:</strong> Linear calibration of LF data using HF points, then multi-fidelity GPR training</li>
+            <li><strong>Validation:</strong> Leave-one-out cross-validation with 2 held-out HF points</li>
+        </ul>
+        
+        <h2>Key Results</h2>
+        <ul>
+            <li>Multi-fidelity GPR outperformed single-fidelity models</li>
+            <li>Reduced SST prediction error with more reliable uncertainty estimates</li>
+            <li>Successfully combined satellite coverage with sensor accuracy</li>
+            <li>Linear GPR preferred over nonlinear due to limited HF data points</li>
+        </ul>
+        
+        <h2>Challenges</h2>
+        <p><strong>Thermoclines:</strong> Subsurface temperature gradients exist but our surface-only data cannot account for them. Future work requires depth data to incorporate thermocline effects.</p>
+        
+        <h2>Future Work</h2>
+        <ul>
+            <li>Incorporate thermocline data by obtaining depth measurements</li>
+            <li>Expand high-fidelity sensor coverage across the harbor</li>
+            <li>Develop into a peer-reviewed publication</li>
+        </ul>
+        
+        <h2>Authors</h2>
+        <p><strong>Angad Kumar</strong> — Obra D. Tompkins High School, Texas, USA<br>
+        <strong>Khemraj Shukla</strong> — Brown University, Rhode Island, USA</p>
+        
+        <h2>Acknowledgements</h2>
+        <p>We thank Xuhui Meng (Huazhong University of Science and Technology) for providing the dataset.</p>
+        
+        <h2>Links</h2>
+        <p>
+            <a href="../Kumar_Shukla_AGU_2025_poster_60x40.pdf" target="_blank">Download Poster (PDF)</a>
+        </p>
+    </div>
+</body>
+</html>
