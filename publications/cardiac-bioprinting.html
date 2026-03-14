@@ -26,201 +26,133 @@
         </div>
 
         <section class="content-section">
-            <h2>Overview</h2>
-            <p class="lead">
-                We developed a 3D U-Net convolutional neural network that automatically extracts cardiac vascular 
-                networks from CT angiography and converts them into bioprint-ready 3D models, enabling faster, 
-                consistent, and patient-specific vascular modeling for implantable heart tissue.
-            </p>
-        </section>
-
-        <section class="content-section">
             <h2>Background</h2>
             <div class="two-col">
                 <div>
-                    <p>Cardiovascular disease causes 17.9 million deaths per year worldwide. Key challenges include:</p>
+                    <p>Cardiovascular disease causes <strong>17.9 million deaths per year</strong> worldwide. 
+                    Current challenges include:</p>
                     <ul>
                         <li>13 Americans die daily awaiting organ transplants</li>
-                        <li>86% of bioprinted constructs fail in 7 days from vascular necrosis</li>
-                        <li>Manual annotation of CT scans takes 8-12 hours per patient</li>
+                        <li>86% of bioprinted constructs fail from vascular necrosis</li>
+                        <li>Manual CT annotation takes 8-12 hours per patient</li>
                     </ul>
                 </div>
                 <div class="figure">
-                    <img src="../assets/cardiovascular-deaths-chart.png" alt="Cardiovascular disease deaths 1900-2006">
-                    <span class="caption">Cardiovascular Disease Deaths (1900-2006)</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2>Research Objectives</h2>
-            <p>Produce a fully trained pipeline from raw CT images to bioprint-ready vascular structures:</p>
-            <div class="method-flow">
-                <div class="step">
-                    <span class="step-num">1</span>
-                    <p>Process CT scans and map vascular structures</p>
-                </div>
-                <div class="arrow">→</div>
-                <div class="step">
-                    <span class="step-num">2</span>
-                    <p>Generate full cardiac mask using 3D U-Net CNN</p>
-                </div>
-                <div class="arrow">→</div>
-                <div class="step">
-                    <span class="step-num">3</span>
-                    <p>Convert to STL file with printing scripts for 3D bioprinting</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2>Engineering Methodology</h2>
-            <div class="data-cards">
-                <div class="data-card">
-                    <h3>Phase A: 3D U-Net Model</h3>
-                    <ul>
-                        <li>DICOM alignment preserved</li>
-                        <li>Original voxel spacing kept (no distortion)</li>
-                        <li>Center of Mass validation</li>
-                        <li>CT window: [-200, 700] HU</li>
-                    </ul>
-                </div>
-                <div class="data-card">
-                    <h3>Phase B: STL Conversion</h3>
-                    <ul>
-                        <li>Base 3D mesh generation</li>
-                        <li>Taubin smoothing</li>
-                        <li>Wall thickness enforcement (≥3mm)</li>
-                        <li>Final STL output</li>
-                    </ul>
+                    <img src="../assets/cardiac-images/cardiovascular-deaths-chart.png" alt="Cardiovascular disease deaths 1900-2006">
+                    <span class="caption">Rising cardiovascular disease deaths over time</span>
                 </div>
             </div>
             <div class="figure wide">
-                <img src="../assets/model-workflow.png" alt="Model workflow diagram">
-                <span class="caption">Model Workflow: Phase A (3D U-Net) and Phase B (STL Conversion)</span>
+                <img src="../assets/cardiac-images/manual-segmentation.png" alt="Manual segmentation process">
+                <span class="caption">Current manual segmentation process performed by trained radiologists</span>
             </div>
         </section>
 
         <section class="content-section">
-            <h2>Dataset & Preprocessing</h2>
+            <h2>Methodology</h2>
+            <p>Our automated pipeline replaces manual annotation with deep learning:</p>
+            
+            <div class="figure wide">
+                <img src="../assets/cardiac-images/model-workflow.png" alt="Model workflow diagram">
+                <span class="caption">Two-phase workflow: Phase A (3D U-Net segmentation) and Phase B (STL conversion)</span>
+            </div>
+
             <div class="two-col">
                 <div>
-                    <p><strong>ImageCAS Dataset:</strong> Large-scale coronary artery segmentation dataset</p>
+                    <h3>Data Preprocessing</h3>
+                    <p>Raw CT scans require windowing and resampling to standardize input:</p>
                     <ul>
+                        <li>CT window: [-200, 700] HU</li>
                         <li>Target spacing: 0.6 mm³</li>
                         <li>Voxel sparsity: 0.175%</li>
-                        <li>Validation: Training error and validation error monitoring</li>
                     </ul>
                 </div>
                 <div class="figure">
-                    <img src="../assets/sparsity-visualization.png" alt="Sparsity visualization of CT scans">
-                    <span class="caption">Sparsity Visualization of CT Scans</span>
+                    <img src="../assets/cardiac-images/preprocessing-comparison.png" alt="Before and after preprocessing">
+                    <span class="caption">Raw CT scans vs. windowed and resampled data</span>
                 </div>
             </div>
+
             <div class="figure wide">
-                <img src="../assets/preprocessing-comparison.png" alt="Before and after preprocessing">
-                <span class="caption">Before vs After Preprocessing: Raw CT scans, windowing, and resampling</span>
+                <img src="../assets/cardiac-images/sparsity-visualization.png" alt="Sparsity visualization">
+                <span class="caption">Visualizing the 0.175% voxel sparsity challenge in cardiac CT data</span>
             </div>
         </section>
 
         <section class="content-section">
-            <h2>Loss Processing</h2>
+            <h2>Model Training</h2>
             <div class="data-cards">
                 <div class="data-card">
                     <h3>Dice Loss</h3>
                     <div class="stat">50%</div>
-                    <p>Segmentation accuracy</p>
+                    <p>Segmentation overlap accuracy</p>
                 </div>
                 <div class="data-card">
                     <h3>Binary Cross-Entropy</h3>
                     <div class="stat">30%</div>
-                    <p>Pixel classification</p>
+                    <p>Pixel-wise classification</p>
                 </div>
                 <div class="data-card">
                     <h3>Focal Loss</h3>
                     <div class="stat">20%</div>
-                    <p>Hard example mining</p>
+                    <p>Hard example focus</p>
                 </div>
             </div>
-            <div class="figure wide">
-                <img src="../assets/loss-graph.png" alt="Loss graph of CNN model">
-                <span class="caption">Loss Graph of CNN Model showing training convergence</span>
-            </div>
-            <div class="figure wide">
-                <img src="../assets/dice-graph.png" alt="Dice graph of CNN model">
-                <span class="caption">Dice Graph showing segmentation accuracy over training</span>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2>Results</h2>
-            <div class="results-grid">
-                <div class="result-item">
-                    <h4>Geometry Integrity</h4>
-                    <p>Watertight models with zero holes, manifold topology with perfect edge connectivity, 
-                    and validated sliceability across 50 planes.</p>
-                </div>
-                <div class="result-item">
-                    <h4>Wall Thickness</h4>
-                    <p>≥3mm enforced for PLGA structural requirements, preventing slicing failures and 
-                    ensuring continuous extrusion.</p>
-                </div>
-                <div class="result-item">
-                    <h4>Print Ready</h4>
-                    <p>Direct workflow from diagnostic imaging to bioprinting, reducing production time 
-                    from days to hours.</p>
-                </div>
-            </div>
-            <div class="figure wide">
-                <img src="../assets/heart-stl.png" alt="Final 3D printable heart STL">
-                <span class="caption">Final 3D Printable Heart (STL File)</span>
-            </div>
-            <div class="figure wide">
-                <img src="../assets/vessels-stl.png" alt="Final 3D printable vascular network STL">
-                <span class="caption">Final 3D Printable Vascular Network (STL File)</span>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2>Quality Guarantees</h2>
             <div class="two-col">
-                <div>
-                    <ul>
-                        <li><strong>Watertightness:</strong> Sealed, zero holes = no leakage</li>
-                        <li><strong>Manifold Topology:</strong> Perfect edge connectivity</li>
-                        <li><strong>Sliceability:</strong> 50-plane cross-section validation</li>
-                        <li><strong>Edge Stability:</strong> Validated for bioprinting</li>
-                    </ul>
+                <div class="figure">
+                    <img src="../assets/cardiac-images/loss-graph.png" alt="Training loss graph">
+                    <span class="caption">Training and validation loss convergence</span>
                 </div>
                 <div class="figure">
-                    <img src="../assets/watertight-check.png" alt="Watertightness validation">
-                    <span class="caption">Completely Watertight Validation</span>
+                    <img src="../assets/cardiac-images/dice-graph.png" alt="Dice coefficient graph">
+                    <span class="caption">Dice coefficient showing segmentation accuracy</span>
                 </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Results & Validation</h2>
+            <div class="results-grid">
+                <div class="result-item">
+                    <h4>Watertight Geometry</h4>
+                    <p>Zero holes, manifold topology, 50-plane sliceability validation</p>
+                </div>
+                <div class="result-item">
+                    <h4>Structural Integrity</h4>
+                    <p>Wall thickness ≥3mm enforced for PLGA bioprinting requirements</p>
+                </div>
+                <div class="result-item">
+                    <h4>Time Reduction</h4>
+                    <p>From 8-12 hours manual work to under 1 hour automated processing</p>
+                </div>
+            </div>
+            
+            <div class="figure wide">
+                <img src="../assets/cardiac-images/heart-stl.png" alt="3D printable heart model">
+                <span class="caption">Final watertight 3D heart model ready for bioprinting</span>
+            </div>
+            <div class="figure wide">
+                <img src="../assets/cardiac-images/vessels-stl.png" alt="Vascular network detail">
+                <span class="caption">Isolated vascular network showing detailed coronary structure</span>
+            </div>
+            <div class="figure wide">
+                <img src="../assets/cardiac-images/edge-stability-distribution.png" alt="Edge stability validation">
+                <span class="caption">Edge stability distribution validating bioprinting feasibility</span>
             </div>
         </section>
 
         <section class="content-section">
             <h2>Impact & Future Work</h2>
             <div class="challenge-box">
-                <strong>Impact:</strong> Reduces 3D bioprinting time from days to hours, allowing radiologists 
-                to focus on surgeries rather than manual annotation. Addresses organ shortage crisis and 
-                improves tissue survival rates.
+                <strong>Clinical Impact:</strong> Automated pipeline enables scalable, patient-specific cardiac 
+                tissue engineering. Radiologists can focus on surgeries rather than manual annotation, 
+                addressing the critical organ shortage.
             </div>
             <ul class="future-list">
                 <li>Expand to lymphatic networks and multi-organ applications</li>
-                <li>Integrate MRI for increased accessibility</li>
-                <li>Optimize for smaller organs with limited data</li>
+                <li>Integrate MRI for increased accessibility (trade-off: lower accuracy)</li>
                 <li>Clinical validation and peer-reviewed publication</li>
-            </ul>
-        </section>
-
-        <section class="content-section">
-            <h2>Key References</h2>
-            <ul class="reference-list">
-                <li>Donate Life America. (2023). Organ, Eye and Tissue Donation Statistics.</li>
-                <li>Wasserthal et al. (2023). TotalSegmentator: Robust Segmentation of 104 Anatomic Structures in CT Images. <em>Radiology</em>.</li>
-                <li>Zeng et al. (2023). ImageCAS: A large-scale dataset for coronary artery segmentation. <em>Computerized Medical Imaging and Graphics</em>.</li>
-                <li>van Lier et al. (2016). Transmural distribution of coronary collaterals within the human heart. <em>Cardiovascular Pathology</em>.</li>
+                <li>Optimize for smaller organs with limited training data</li>
             </ul>
         </section>
     </div>
